@@ -44,7 +44,7 @@ Tokens used by CI/CD systems, SaaS integrations, deployment tools, schedulers, o
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Block tenant access to operational services:** Tenant workloads, notebooks, containers, and ordinary job networks should not reach schedulers, cluster control-plane APIs, configuration automation, node-preparation services, or privileged admin interfaces.
 

@@ -44,7 +44,7 @@ In Kubernetes and similar platforms, shared HCA access or shared RDMA-capable de
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Enforce protocol-specific fabric controls, do not rely on defaults:** For InfiniBand, explicitly configure and review controls like P_Key, M_Key, SM_Key, SA_Key, and allowed_sm_guids. For RoCE (running over Ethernet with no subnet manager), apply explicit Ethernet/IP segmentation such as VLANs and ACLs. Many protections are weak or off in upstream defaults-confirm they are actually set rather than assuming the fabric is isolated.
 

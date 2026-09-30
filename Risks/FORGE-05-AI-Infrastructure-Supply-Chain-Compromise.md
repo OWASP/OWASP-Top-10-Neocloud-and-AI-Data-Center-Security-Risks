@@ -48,7 +48,7 @@ AI/HPC platforms may remain in service for many years while depending on vendors
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Verify before trust at every handoff:** Independently verify firmware versions, BIOS/management settings, installed images, and component inventory when receiving systems from integrators, resellers, logistics partners, manufacturers, or refurbishment paths. Re-establish trust after any third-party staging, repair, or return.
 

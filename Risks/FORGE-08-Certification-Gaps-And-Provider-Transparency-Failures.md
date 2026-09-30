@@ -10,11 +10,11 @@ These failures occur when customers depend on provider certifications, attestati
 
 ## Description
 
-Many GPU cloud providers present security assurance through certifications like SOC 2 or ISO 27001, but those attestations don't automatically prove the full AI infrastructure stack was assessed. Audit scope may cover the provider's customer portal, API, and internal software processes while excluding physical GPU hosts, backend fabric, BMC environment, firmware lifecycle, node reassignment procedures, or upstream infrastructure operators.
+Many neocloud providers present security assurance through certifications like SOC 2 or ISO 27001, but those attestations don't automatically prove the full AI infrastructure stack was assessed. Audit scope may cover the provider's customer portal, API, and internal software processes while excluding physical GPU hosts, backend fabric, BMC environment, firmware lifecycle, node reassignment procedures, or upstream infrastructure operators.
 
 This gap is harder to detect when provider transparency is limited. Some providers resell or aggregate capacity from other operators, lease infrastructure from third parties, or rely on subservice organizations not obvious to the customer. Regional differences can matter if controls, operators, or audited environments vary by location. HPC security guidance such as [NIST SP 800-223](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-223.pdf) and [NIST SP 800-234](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-234.pdf) can help customers ask better questions about specialized hardware, high-speed networks, architecture, and security controls. But these are guidance documents, not provider-specific assurance.
 
-They don't prove a given provider implemented the controls or that audited scope covers infrastructure actually running the workload. The result is a false sense of assurance. Customers may believe a certified provider independently validated the security of the full AI environment when the attested scope is partial or unclear. This is especially important in fast-growing GPU cloud environments where security documentation, control standardization, and infrastructure transparency may lag behind deployment.
+They don't prove a given provider implemented the controls or that audited scope covers infrastructure actually running the workload. The result is a false sense of assurance. Customers may believe a certified provider independently validated the security of the full AI environment when the attested scope is partial or unclear. This is especially important in fast-growing neocloud environments where security documentation, control standardization, and infrastructure transparency may lag behind deployment.
 
 ## Impact and Failure Modes
 
@@ -44,7 +44,7 @@ Customers rely on self-attestation, SOC 2 Type I, or marketing claims as though 
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Make attestation scope explicit:** State clearly which parts of the stack a certification actually covers so customers can't mistake a portal-and-API audit for full-stack assurance.
 
@@ -68,7 +68,7 @@ Customers rely on self-attestation, SOC 2 Type I, or marketing claims as though 
 
 ### Certification Scope Mismatch
 
-An enterprise selects a GPU cloud provider based on SOC 2 Type II and marketing claims of secure AI infrastructure. After a security incident, the customer discovers the audited scope covered only the provider's orchestration platform and customer portal. The physical GPU systems, BMC environment, backend fabric, and storage layer were operated by a third party outside the assessed boundary, leaving the customer without evidence that the actual workload environment met expected controls.
+An enterprise selects a neocloud provider based on SOC 2 Type II and marketing claims of secure AI infrastructure. After a security incident, the customer discovers the audited scope covered only the provider's orchestration platform and customer portal. The physical GPU systems, BMC environment, backend fabric, and storage layer were operated by a third party outside the assessed boundary, leaving the customer without evidence that the actual workload environment met expected controls.
 
 ### Hidden Upstream Provider
 

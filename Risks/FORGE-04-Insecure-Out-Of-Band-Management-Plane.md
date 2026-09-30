@@ -68,7 +68,7 @@ Smart PDUs, console servers, KVM systems, management switches, and SNMP-managed 
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Segment and monitor the management network, not just its perimeter:** Place BMCs and other OOB endpoints on a dedicated management network or VLAN with no routing from workload, storage, public-facing, or corporate networks, and never expose them directly to the internet. Treat the network as a monitored trust zone: limit lateral movement between management devices and alert on unexpected traffic, so one compromised endpoint cannot freely reach every other.
 

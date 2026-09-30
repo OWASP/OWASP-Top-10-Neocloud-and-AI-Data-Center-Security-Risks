@@ -46,7 +46,7 @@ AI storage platforms generally support encryption at rest, per-filesystem audit 
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Enforce authentication and tenant isolation at the storage layer:** Require client authentication for all filesystem mounts and storage protocols on AI storage platforms. Enforce tenant separation at the storage layer itself, not only in the scheduler or model registry. Restrict storage-network reachability only to approved hosts.
 

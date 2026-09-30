@@ -10,7 +10,7 @@ This risk addresses situations where data centers and AI infrastructure remain e
 
 ## Description
 
-Patch deployment speed varies widely among GPU cloud providers. Some receive earlier notice through coordinated disclosure, OEM, or vendor-partner channels, while others only learn of issues when public bulletins or CVEs are released. Providers lacking advance coordination face a zero-notice exposure window where a vulnerability is public before their fleet is patched.
+Patch deployment speed varies widely among neocloud providers. Some receive earlier notice through coordinated disclosure, OEM, or vendor-partner channels, while others only learn of issues when public bulletins or CVEs are released. Providers lacking advance coordination face a zero-notice exposure window where a vulnerability is public before their fleet is patched.
 
 Recent NVIDIA Container Toolkit vulnerabilities illustrate the problem. Publicly disclosed issues like CVE-2024-0132 and CVE-2025-23266 demonstrated that vulnerabilities in core GPU container infrastructure can enable privilege escalation or container escape on affected systems. Once technical details or public exploit guidance become available, the exploitation barrier drops sharply for any provider still running vulnerable toolkit versions.
 
@@ -42,7 +42,7 @@ Heterogeneous versions across large clusters can leave a subset of nodes vulnera
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Establish internal patch SLAs by severity:** Define concrete remediation targets for critical, high, and medium vulnerabilities, and treat GPU container runtimes, drivers, firmware, and orchestration components as security-critical assets.
 

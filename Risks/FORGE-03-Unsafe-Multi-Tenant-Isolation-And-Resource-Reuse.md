@@ -46,7 +46,7 @@ Research such as Whispering Pixels and NVBleed has shown that GPU state, memory 
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Harden GPU runtime boundaries:** Keep GPU drivers, NVIDIA Container Toolkit, device plugins, and container runtimes patched. Restrict privileged containers, hostPath mounts, broad device access, unsafe container hooks, and unnecessary access to accelerator interfaces. Treat GPU runtime integration as part of the tenant-isolation boundary, not as a trusted implementation detail.
 

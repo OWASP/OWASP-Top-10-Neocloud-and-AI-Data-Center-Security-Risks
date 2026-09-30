@@ -42,7 +42,7 @@ BMC platforms frequently ship with integrity features turned off. HPE iLO's Glob
 
 ### Attestation coverage is uneven across mixed fleets
 
-Hardware-backed attestation depends on platform and component support, such as an external Root of Trust (eRoT) that must be designed into the system. NVIDIA datacenter products have broad eRoT coverage, but support across CPUs, NICs, storage controllers, BMCs, and older platforms may vary significantly. Providers cannot assume every component in a mixed fleet can produce useful attestation evidence.
+Hardware-backed attestation depends on platform and component support, such as an external Root of Trust (eRoT) that must be designed into the system. NVIDIA data center products have broad eRoT coverage, but support across CPUs, NICs, storage controllers, BMCs, and older platforms may vary significantly. Providers cannot assume every component in a mixed fleet can produce useful attestation evidence.
 
 ### Attestation evidence needs reference values to be meaningful
 
@@ -50,7 +50,7 @@ An attestation measurement only proves what value a device reported. To determin
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
 1. **Establish a hardware root of trust:** Use a hardware or silicon root of trust, together with a TPM or equivalent, to anchor platform identity, record boot measurements, and support attestation. Where supported, use silicon root-of-trust efforts such as Caliptra for chip identity, measured boot, and attestation.
 

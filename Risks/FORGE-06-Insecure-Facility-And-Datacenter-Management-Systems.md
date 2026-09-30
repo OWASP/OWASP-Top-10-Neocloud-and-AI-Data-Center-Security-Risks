@@ -1,4 +1,4 @@
-# FORGE-06: Insecure Facility & Datacenter Management Systems
+# FORGE-06: Insecure Facility & Data Center Management Systems
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|
@@ -6,11 +6,11 @@
 
 ## Definition
 
-This category covers weaknesses in the software platforms that run the physical datacenter, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, and DCIM for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload.
+This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, and DCIM for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload.
 
 ## Description
 
-AI datacenters depend on facility infrastructure that is often invisible to security teams focused on servers, networks, and cloud control planes. BMS platforms control chilled water loops, CRAH and CRAC units, and cooling systems for high-density GPU racks. EPMS platforms monitor and sometimes control switchgear, UPS units, generators, and branch-circuit power distribution. DCIM platforms aggregate telemetry, track rack and asset location, and support capacity planning. Physical security systems govern entry to buildings, data halls, cages, rows, or maintenance areas.
+AI data centers depend on facility infrastructure that is often invisible to security teams focused on servers, networks, and cloud control planes. BMS platforms control chilled water loops, CRAH and CRAC units, and cooling systems for high-density GPU racks. EPMS platforms monitor and sometimes control switchgear, UPS units, generators, and branch-circuit power distribution. DCIM platforms aggregate telemetry, track rack and asset location, and support capacity planning. Physical security systems govern entry to buildings, data halls, cages, rows, or maintenance areas.
 
 These systems matter more for AI infrastructure than conventional compute because GPU clusters operate closer to thermal and power limits than traditional server fleets. Modern GPU racks can draw 50 to 130 kW or more, well above the 5 to 15 kW common in earlier generations. A facility-side disruption to cooling or power can stop a multi-day training run, corrupt checkpoints across many nodes, or force emergency shutdown of an entire hall.
 
@@ -28,7 +28,7 @@ Controls integrators and equipment vendors are often given persistent remote acc
 
 ### Internet-exposed management interfaces
 
-Public research has identified tens of thousands of datacenter management interfaces, including DCIM platforms, cooling controllers, UPS units, and rack monitors, reachable directly from the internet. Exposure is especially dangerous when combined with default credentials, weak authentication, or missing VPN and jump-host controls.
+Public research has identified tens of thousands of data center management interfaces, including DCIM platforms, cooling controllers, UPS units, and rack monitors, reachable directly from the internet. Exposure is especially dangerous when combined with default credentials, weak authentication, or missing VPN and jump-host controls.
 
 ### Facility software maintained by small teams or single vendors
 
@@ -36,9 +36,9 @@ BMS, EPMS, DCIM, and related facility platforms may be maintained by small vendo
 
 ## Prevention and Mitigation Strategies
 
-### For providers and datacenter operators
+### For neocloud providers and data center operators
 
-1. **Treat facility systems as a separate, segmented network:** Place BMS, EPMS, DCIM, and physical security systems on dedicated networks that are not reachable from tenant workloads, corporate IT, or the public internet. Do not assume that being inside the datacenter perimeter is enough.
+1. **Treat facility systems as a separate, segmented network:** Place BMS, EPMS, DCIM, and physical security systems on dedicated networks that are not reachable from tenant workloads, corporate IT, or the public internet. Do not assume that being inside the data center perimeter is enough.
 
 2. **Govern vendor remote access:** Inventory every remote connection used by integrators, controls vendors, and equipment manufacturers. Replace always-on connections with time-bound, on-demand access through a controlled jump host. Require unique accounts per person, multi-factor authentication, and full session logging. Treat vendor access as a privileged path, not a convenience.
 
@@ -60,7 +60,7 @@ Facility infrastructure sits almost entirely on the provider side and is rarely 
 
 ### Vendor Compromise to Cooling Disruption
 
-A controls integrator providing remote support to several datacenter operators is breached through an unpatched public-facing maintenance portal. The integrator maintains always-on VPN connections into each customer's facility network, so once inside the integrator's environment, the attacker can reach the BMS at a GPU site without breaching the operator directly. From the BMS, the attacker lowers cooling capacity by changing chilled-water setpoints and disabling several air handlers. The affected environment becomes unstable, causing workload interruptions and reduced cluster availability.
+A controls integrator providing remote support to several data center operators is breached through an unpatched public-facing maintenance portal. The integrator maintains always-on VPN connections into each customer's facility network, so once inside the integrator's environment, the attacker can reach the BMS at a GPU site without breaching the operator directly. From the BMS, the attacker lowers cooling capacity by changing chilled-water setpoints and disabling several air handlers. The affected environment becomes unstable, causing workload interruptions and reduced cluster availability.
 
 ### Internet-Exposed DCIM as a Map for a Targeted Attack
 
@@ -68,7 +68,7 @@ A DCIM platform is reachable from the public internet because it was made access
 
 ## References
 
-- **Data Centers Facing The Risk of Cyberattacks.** Cyble Research Labs. Investigation finding more than 20,000 internet-exposed datacenter management interfaces, many secured only by default credentials. https://cyble.com/blog/data-centers-facing-risk-of-cyberattacks/
+- **Data Centers Facing The Risk of Cyberattacks.** Cyble Research Labs. Investigation finding more than 20,000 internet-exposed data center management interfaces, many secured only by default credentials. https://cyble.com/blog/data-centers-facing-risk-of-cyberattacks/
 - **NIST SP 800-82 Rev. 3, Guide to Operational Technology (OT) Security.** NIST. Foundational guidance for securing industrial control and building automation systems, including segmentation, access control, and protocol-specific recommendations. https://csrc.nist.gov/pubs/sp/800/82/r3/final
 - **ISA/IEC 62443 Series, Security for Industrial Automation and Control Systems.** ISA/IEC. International standard for OT security covering network segmentation, access control, and lifecycle management of control system components. https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards
 - **ASHRAE Standard 135, BACnet.** ASHRAE. The base BACnet standard, used by most building management systems for HVAC and environmental control. https://www.ashrae.org/technical-resources/bookstore/standard-135
@@ -76,4 +76,4 @@ A DCIM platform is reachable from the public internet because it was made access
 - **Modbus Security Specification.** Modbus Organization. Specification adding TLS-based authentication and encryption to the Modbus protocol. https://modbus.org/docs/MB-TCP-Security-v21_2018-07-24.pdf
 - **Target 2013 Data Breach Analysis.** Senate Commerce Committee staff report. Documents how an HVAC vendor's compromised remote access was used as the initial access vector into the Target retail network. https://www.commerce.senate.gov/services/files/24d3c229-4f2f-405d-b8db-a3a67f183883
 - **ICS-CERT Advisories on Building Management and Power Systems.** CISA. Ongoing vendor advisories covering vulnerabilities in BMS, EPMS, UPS, and DCIM products from manufacturers including Schneider Electric, Siemens, Tridium, and Vertiv. https://www.cisa.gov/news-events/cybersecurity-advisories
-- **openDCIM Project.** Open-source DCIM platform widely deployed in academic and commercial datacenters. The project's lead maintainer announced retirement in 2025 with no successor identified at the time of writing. https://github.com/opendcim/openDCIM
+- **openDCIM Project.** Open-source DCIM platform widely deployed in academic and commercial data centers. The project's lead maintainer announced retirement in 2025 with no successor identified at the time of writing. https://github.com/opendcim/openDCIM
