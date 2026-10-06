@@ -1,0 +1,34 @@
+name: "💡 Suggestion"
+description: Improve a risk or propose new content.
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Which risk?
+      options:
+        - FORGE-01 — Hardware & Firmware Integrity Compromise
+        - FORGE-02 — Network & Interconnect Vulnerabilities
+        - FORGE-03 — Unsafe Multi-Tenant Isolation and Resource Reuse
+        - FORGE-04 — Insecure Out-of-Band Management Plane
+        - FORGE-05 — AI Infrastructure Supply Chain Compromise
+        - FORGE-06 — Insecure Facility & Data Center Management Systems
+        - FORGE-07 — Insecure Data and Artifact Handling
+        - FORGE-08 — Certification Gaps & Provider Transparency Failures
+        - FORGE-09 — Insecure Operational Infrastructure Services
+        - FORGE-10 — Vendor Embargo Gaps & Patch Velocity Failures
+        - General / more than one risk
+        - New content (mapping, section, or risk)
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting references
+      description: CVEs, standards, vendor documentation, or research. Links preferred.

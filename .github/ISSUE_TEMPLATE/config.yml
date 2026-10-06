@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 OWASP Slack — #project-neocloud-ai-infrastructure
+    url: https://owasp.org/slack/invite
+    about: Join the OWASP Slack, then come to #project-neocloud-ai-infrastructure to chat with the community.
+  - name: 📄 Official OWASP project page
+    url: https://owasp.org/projects/top-10-ai-infrastructure-security-risks
+    about: Project overview, leaders, and resources on owasp.org.
+  - name: 📖 How to contribute
+    url: https://github.com/OWASP/OWASP-Top-10-Neocloud-and-AI-Data-Center-Security-Risks/blob/main/CONTRIBUTING.md
+    about: Read the contributing guide before opening a larger change.

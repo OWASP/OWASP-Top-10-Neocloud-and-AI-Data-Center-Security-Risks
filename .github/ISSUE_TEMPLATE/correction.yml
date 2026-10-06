@@ -1,0 +1,23 @@
+name: "📝 Correction"
+description: Report an error, broken link, or outdated reference.
+labels: ["documentation"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Where is it?
+      description: File and section, or a link to the exact paragraph.
+      placeholder: "FORGE-04 → References"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix
+      description: The corrected text, link, or reference, if you have it.
