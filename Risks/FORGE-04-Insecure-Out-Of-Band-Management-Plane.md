@@ -88,9 +88,13 @@ Smart PDUs, console servers, KVM systems, management switches, and SNMP-managed 
 
 ### For customers evaluating a provider
 
-1. **Test what management systems you can reach:** From your node and its network, confirm you cannot reach your BMC/IPMI interface, the management subnet, or other management devices such as PDUs, console servers, or switch management ports. Reaching any of these, including another tenant's BMC, is a segmentation failure you have found directly.
+1. **Validate tenant-to-management isolation within an authorized scope:** Where the provider permits it, verify from systems and networks you control that OOB interfaces are not reachable from tenant workloads. Do not scan management networks, provider devices, or other tenants without explicit authorization. If direct testing is not permitted, ask the provider for a summary of segmentation validation and its remediation process for isolation failures.
 
-2. **Check for in-band host-to-BMC paths:** On bare metal, check whether interfaces such as KCS, USB/RNDIS, or the Redfish Host Interface are exposed from your OS, since these are the path used to pivot from a host compromise into the management plane.
+2. **Review in-band host-to-BMC access on systems you administer:** On bare-metal hosts within your scope, check whether KCS, USB/RNDIS, pass-through, or the Redfish Host Interface is exposed, and whether those paths are required. If the provider manages the interfaces, request its policy for disabling unnecessary paths and restricting those that remain enabled. The DMTF Redfish Host Interface specification (DSP0270) describes the host-side interface.
+
+3. **Request evidence for provider-managed controls:** Ask which party owns BMC account lifecycle, unique credentials, privileged access, management-network restrictions, firmware patching, logging, and recovery. Request an appropriate summary of control testing, patch timelines, and exception handling rather than privileged access to the provider's management plane.
+
+4. **Document shared responsibilities and incident procedures:** Agree on who investigates management-plane events, how customers are notified of material incidents, and the process for reporting suspected cross-tenant or OOB exposure. Record any controls the provider cannot substantiate as an assurance gap, with compensating measures or an explicit risk decision.
 
 ## Attack Scenarios
 
@@ -125,3 +129,4 @@ An attacker first gains root access on a host through an application, container,
 - **The iLOBleed Implant.** Eclypsium, 2021. First BMC firmware rootkit discovered in the wild. https://eclypsium.com/blog/the-ilobleed-implant-lights-out-management-like-you-wouldnt-believe/
 - **Turning your BMC into a revolving door.** Airbus Security Lab, ZeroNights 2018. iLO exploitation techniques including firmware analysis and persistent access. https://airbus-seclab.github.io/ilo/ZERONIGHTS2018-Slides-EN-Turning_your_BMC_into_a_revolving_door-perigaud-gazet-czarny.pdf
 - **BMC Attack Surface via Host-to-BMC Interfaces.** ScienceDirect, 2020. Host-to-BMC DMA and memory access risks. https://www.sciencedirect.com/science/article/pii/S2666281720300147
+- **Cloud Security Technical Reference Architecture.** CISA, 2021. Shared security responsibilities and provider/customer boundary definitions. https://www.cisa.gov/sites/default/files/publications/CISA%20Cloud%20Security%20Technical%20Reference%20Architecture_Version%201.pdf
