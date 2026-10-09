@@ -70,13 +70,13 @@ Smart PDUs, console servers, KVM systems, management switches, and SNMP-managed 
 
 ### For neocloud providers and data center operators
 
-1. **Segment and monitor the management network, not just its perimeter:** Place BMCs and other OOB endpoints on a dedicated management network or VLAN with no routing from workload, storage, public-facing, or corporate networks, and never expose them directly to the internet. Treat the network as a monitored trust zone: limit lateral movement between management devices and alert on unexpected traffic, so one compromised endpoint cannot freely reach every other.
+1. **Segment and monitor the management network, not just its perimeter:** Place BMCs and other OOB endpoints on a dedicated management network or VLAN with no routing from workload, storage, public-facing, or corporate networks, and never expose them directly to the internet. Treat the network as a monitored trust zone: limit lateral movement between management devices and alert on unexpected traffic, so one compromised endpoint cannot freely reach every other. Apply explicit egress controls to BMC-originated traffic, allowing only documented dependencies such as approved time synchronization, name resolution, logging, and update endpoints.
 
 2. **Replace factory credentials and harden authentication:** Replace factory-default and per-device sticker passwords before deployment, since sticker passwords are often shorter and drawn from a narrower character set than they appear and can be cracked offline. Store replacements in an approved secrets-management system, enforce strong authentication, prefer modern encrypted interfaces, and disable insecure IPMI options such as Cipher Suite 0 where possible.
 
-3. **Restrict who can reach management interfaces:** Limit Redfish, IPMI, SSH, web UI, and vendor-specific interfaces to authorized jump hosts or management systems, using ACLs, IP filtering, VPN access, and MFA where supported.
+3. **Restrict who can reach management interfaces:** Limit Redfish, IPMI, SSH, web UI, and vendor-specific interfaces to authorized jump hosts or management systems, using ACLs, IP filtering, VPN access, and MFA where supported. Inventory exposed services and disable network IPMI, Serial-over-LAN, Telnet (where present), and SNMP when not operationally required; if SNMP must remain enabled, prefer SNMPv3.
 
-4. **Disable or minimize host-to-BMC interfaces:** Disable in-band interfaces such as KCS, USB networking, pass-through, or Redfish Host Interface unless operationally required. Where they must remain enabled, minimize privileges and restrict access paths tightly.
+4. **Disable or minimize host-to-BMC interfaces:** Disable in-band interfaces such as KCS, USB networking, pass-through, or Redfish Host Interface unless operationally required. Where they must remain enabled, minimize privileges and restrict access paths tightly. Review in-band exposure independently of network IPMI settings: disabling IPMI over LAN does not necessarily disable host-accessible KCS or other host-to-BMC paths.
 
 5. **Patch and verify BMC firmware:** Maintain an inventory of firmware versions and apply vendor updates promptly, using vendor-signed images verified before writing to flash, and disable unsafe update methods. Keep recovery procedures for cases that may require physical re-flashing. Where attestation is available, use it to verify BMC state, but note that self-attestation has limited coverage today and fleet inventory often relies on version numbers self-reported by the BMC itself.
 
@@ -88,9 +88,13 @@ Smart PDUs, console servers, KVM systems, management switches, and SNMP-managed 
 
 ### For customers evaluating a provider
 
-1. **Test what management systems you can reach:** From your node and its network, confirm you cannot reach your BMC/IPMI interface, the management subnet, or other management devices such as PDUs, console servers, or switch management ports. Reaching any of these, including another tenant's BMC, is a segmentation failure you have found directly.
+1. **Validate tenant-to-management isolation within an authorized scope:** Where the provider permits it, verify from systems and networks you control that OOB interfaces are not reachable from tenant workloads. Do not scan management networks, provider devices, or other tenants without explicit authorization. If direct testing is not permitted, ask the provider for a summary of segmentation validation and its remediation process for isolation failures.
 
-2. **Check for in-band host-to-BMC paths:** On bare metal, check whether interfaces such as KCS, USB/RNDIS, or the Redfish Host Interface are exposed from your OS, since these are the path used to pivot from a host compromise into the management plane.
+2. **Review in-band host-to-BMC access on systems you administer:** On bare-metal hosts within your scope, check whether KCS, USB/RNDIS, pass-through, or the Redfish Host Interface is exposed, and whether those paths are required. If the provider manages the interfaces, request its policy for disabling unnecessary paths and restricting those that remain enabled. The DMTF Redfish Host Interface specification (DSP0270) describes the host-side interface.
+
+3. **Request evidence for provider-managed controls:** Ask which party owns BMC account lifecycle, unique credentials, privileged access, management-network restrictions, firmware patching, logging, and recovery. Request an appropriate summary of control testing, patch timelines, and exception handling rather than privileged access to the provider's management plane.
+
+4. **Document shared responsibilities and incident procedures:** Agree on who investigates management-plane events, how customers are notified of material incidents, and the process for reporting suspected cross-tenant or OOB exposure. Record any controls the provider cannot substantiate as an assurance gap, with compensating measures or an explicit risk decision.
 
 ## Attack Scenarios
 
@@ -125,3 +129,7 @@ An attacker first gains root access on a host through an application, container,
 - **The iLOBleed Implant.** Eclypsium, 2021. First BMC firmware rootkit discovered in the wild. https://eclypsium.com/blog/the-ilobleed-implant-lights-out-management-like-you-wouldnt-believe/
 - **Turning your BMC into a revolving door.** Airbus Security Lab, ZeroNights 2018. iLO exploitation techniques including firmware analysis and persistent access. https://airbus-seclab.github.io/ilo/ZERONIGHTS2018-Slides-EN-Turning_your_BMC_into_a_revolving_door-perigaud-gazet-czarny.pdf
 - **BMC Attack Surface via Host-to-BMC Interfaces.** ScienceDirect, 2020. Host-to-BMC DMA and memory access risks. https://www.sciencedirect.com/science/article/pii/S2666281720300147
+- **Cloud Security Technical Reference Architecture.** CISA, 2021. Shared security responsibilities and provider/customer boundary definitions. https://www.cisa.gov/sites/default/files/publications/CISA%20Cloud%20Security%20Technical%20Reference%20Architecture_Version%201.pdf
+- **Dell iDRAC9 Security Configuration Guide, Security Recommendations for Interfaces, Protocols, and Services.** Dell. Recommendations to disable unused management services. https://www.dell.com/support/manuals/en-us/idrac9-lifecycle-controller-v7.x-series/idrac9_scg_tta/security-recommendations-for-interfaces-protocols-and-services?guid=guid-7ed8397f-1e43-4f23-aa4b-c67ff41bab51
+- **Security Best Practices for Managing Servers with BMC Features Enabled in Datacenters.** Supermicro, 2022. Guidance for BMC ingress and egress filtering, management isolation, and account security. https://www.supermicro.com/products/nfo/files/IPMI/Best_Practices_BMC_Security.pdf
+- **HPE iLO 6 Security Technology Brief, Network Access Settings.** HPE. Documents separate IPMI/DCMI over LAN and local KCS controls. https://support.hpe.com/hpesc/public/docDisplay?docId=sd00002198en_us&docLocale=en_US&page=GUID-243AF2E9-7137-4421-8966-BBD8386CB9D8.html
