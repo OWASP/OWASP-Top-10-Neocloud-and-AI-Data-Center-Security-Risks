@@ -52,13 +52,13 @@ An attestation measurement only proves what value a device reported. To determin
 
 ### For neocloud providers and data center operators
 
-1. **Establish a hardware root of trust:** Use a hardware or silicon root of trust, together with a TPM or equivalent, to anchor platform identity, record boot measurements, and support attestation. Where supported, use silicon root-of-trust efforts such as Caliptra for chip identity, measured boot, and attestation.
+1. **Establish a hardware root of trust:** Use a hardware or silicon root of trust, together with a TPM or equivalent, to anchor platform identity and support attestation. Where supported, use silicon root-of-trust efforts such as Caliptra for chip identity, measured boot, and attestation.
 
 2. **Enforce trusted boot and signed firmware:** Enable Secure Boot and Measured Boot, require signed firmware, and prevent unauthorized firmware or boot components from running.
 
 3. **Verify firmware before production use, and plan for partial coverage:** Where supported, use device attestation protocols such as SPDM to validate firmware measurements against vendor-published reference values. Confirm that attestation features are enabled and that reported status reflects firmware integrity, not only device authenticity. For components without attestation coverage, use compensating controls such as re-flashing to known-good images when systems are received or reassigned.
 
-4. **Monitor firmware state across the fleet:** Maintain a continuously updated inventory of firmware versions for components such as BIOS, BMC, GPU, NIC, and storage devices. Treat unexpected firmware changes, baseline drift, or failed or changed attestation results as security events requiring investigation. Alert when nodes deviate from approved firmware baselines, when attestation results change between boots without a corresponding maintenance event, or when attestation fails entirely. Without fleet-level visibility, a single tampered node can remain in production indefinitely.
+4. **Monitor firmware state across the fleet:** Maintain a continuously updated inventory of firmware versions for components such as BIOS, BMC, GPU, NIC, and storage devices. Alert on and investigate nodes that deviate from approved firmware baselines, attestation results that change between boots without a corresponding maintenance event, and failed attestation. Without fleet-level visibility, a single tampered node can go undetected.
 
 5. **Gate sensitive workload placement on attestation:** Integrate remote attestation with schedulers so sensitive workloads run only on verified nodes, and automatically quarantine systems that fail verification.
 
