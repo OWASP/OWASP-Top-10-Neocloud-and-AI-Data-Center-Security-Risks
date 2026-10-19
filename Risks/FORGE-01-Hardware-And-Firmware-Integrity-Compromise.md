@@ -62,7 +62,7 @@ An attestation measurement only proves what value a device reported. To determin
 
 5. **Gate sensitive workload placement on attestation:** Integrate remote attestation with schedulers so sensitive workloads run only on verified nodes, and automatically quarantine systems that fail verification.
 
-6. **Secure firmware lifecycle operations:** Restrict access to firmware tooling and management interfaces, require approved update workflows, and re-attest systems during intake, servicing, and tenant transitions.
+6. **Secure firmware lifecycle operations:** Restrict access to firmware tooling and management interfaces, require approved update workflows, and repeat the checks in item 3 during intake, servicing, and tenant transitions.
 
 7. **Maintain secure recovery procedures:** Keep known-good firmware images, documented recovery workflows, and replacement criteria so compromised platforms can be restored or removed from service with trust re-established.
 
@@ -102,10 +102,11 @@ A malicious tenant with root access to a bare-metal GPU node modifies component 
 - **TCG TPM 2.0 Library Specification.** Trusted Computing Group specifications for hardware root of trust. https://trustedcomputinggroup.org/resources/documents/tpm-library-specification
 - **BlackLotus UEFI Bootkit (CVE-2022-21894).** ESET, 2023. UEFI bootkit that bypassed Secure Boot on affected systems, demonstrating firmware-level persistence below the OS. https://www.welivesecurity.com/2023/03/01/blacklotus-uefi-bootkit-myth-confirmed/
 - **CosmicStrand UEFI Firmware Rootkit.** Kaspersky, 2022. Compromised motherboard firmware persisting across OS reinstallation, with concerns about infection through hardware resale channels. https://securelist.com/cosmicstrand-uefi-firmware-rootkit/106973/
-- **iLOBleed, BMC Firmware Rootkit.** Amnpardaz, 2021. First BMC rootkit discovered in the wild. https://threats.amnpardaz.com/en/2021/12/28/implant-arm-ilobleed-a/
+- **iLOBleed, BMC Firmware Rootkit.** Amnpardaz, 2021. Rootkit found in the wild in HPE iLO firmware; the report describes it as the first real-world malware discovery in iLO firmware. https://threats.amnpardaz.com/en/2021/12/28/implant-arm-ilobleed-a/
 - **CVE-2019-6260, ASPEED BMC "Pantsdown" (CVSS 9.8).** Critical BMC vulnerability enabling host firmware access through unchecked memory mappings. https://nvd.nist.gov/vuln/detail/CVE-2019-6260
 - **NSA ANT Catalog.** Electronic Frontier Foundation, 2013. Public archive of leaked hardware and firmware implant capabilities, illustrating supply-chain and pre-boot compromise concerns. https://www.eff.org/files/2014/01/06/20131230-appelbaum-nsa_ant_catalog.pdf
 - **IETF RATS CoRIM (Internet-Draft).** draft-ietf-rats-corim: format for publishing expected attestation values used to evaluate SPDM and similar evidence. https://datatracker.ietf.org/doc/draft-ietf-rats-corim/
 - **RFC 9334, RATS Architecture.** IETF. Architecture for remote attestation. https://datatracker.ietf.org/doc/rfc9334/
 - **HPE iLO 6 User Guide, Global Component Integrity.** HPE. iLO option that authenticates server components using SPDM. https://support.hpe.com/hpesc/public/docDisplay?docId=sd00002007en_us&page=GUID-EBC183E0-5805-4BEE-AFF8-02585DC32C87.html&docLocale=en_US
 - **OCP Security Project.** Open Compute Project work on platform security, including boot code integrity, security firmware APIs and protocols, and firmware security provisioning. https://www.opencompute.org/projects/security
+- **Caliptra.** Open-source silicon root of trust block for datacenter SoCs, providing identity, measured boot, and attestation; hosted by CHIPS Alliance. https://github.com/chipsalliance/Caliptra
