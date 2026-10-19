@@ -46,7 +46,7 @@ Hardware-backed attestation depends on platform and component support, such as a
 
 ### Attestation evidence needs reference values to be meaningful
 
-An attestation measurement only proves what value a device reported. To determine whether that value is trusted, the verifier needs vendor-published reference values for the specific device and firmware version. CoRIM (Concise Reference Integrity Manifest) is the emerging IETF standard for publishing this evidence, but adoption remains limited. NVIDIA is currently the main hardware vendor publishing CoRIM data for its devices.
+An attestation measurement only proves what value a device reported. To determine whether that value is trusted, the verifier needs vendor-published reference values for the specific device and firmware version. CoRIM (Concise Reference Integrity Manifest) is an emerging IETF specification, currently an Internet-Draft, for publishing this evidence, but adoption remains limited. NVIDIA is currently the main hardware vendor publishing CoRIM data for its devices.
 
 ## Prevention and Mitigation Strategies
 
@@ -96,14 +96,16 @@ A malicious tenant with root access to a bare-metal GPU node modifies component 
 
 ## References
 
-- **DMTF SPDM Specification v1.4.0.** Security Protocol and Data Model standard for firmware attestation and device authentication. https://www.dmtf.org/dsp/DSP0274
-- **NIST SP 800-155 (Draft).** BIOS Integrity Measurement Guidelines. https://csrc.nist.gov/files/pubs/sp/800/155/ipd/docs/draft-sp800-155_dec2011.pdf
-- **TCG TPM Library Specification.** Trusted Computing Group specifications for hardware root of trust. https://trustedcomputinggroup.org/resource/tpm-library-specification/
+- **DMTF SPDM Specification (DSP0274).** Security Protocol and Data Model standard for firmware attestation and device authentication. https://www.dmtf.org/dsp/DSP0274
+- **NIST SP 800-193.** Platform Firmware Resiliency Guidelines (2018). Guidance on protecting platform firmware, detecting unauthorized changes, and recovering securely. https://csrc.nist.gov/publications/detail/sp/800-193/final
+- **NIST SP 800-155 (Draft).** BIOS Integrity Measurement Guidelines (2011 draft). https://csrc.nist.gov/files/pubs/sp/800/155/ipd/docs/draft-sp800-155_dec2011.pdf
+- **TCG TPM 2.0 Library Specification.** Trusted Computing Group specifications for hardware root of trust. https://trustedcomputinggroup.org/resources/documents/tpm-library-specification
 - **BlackLotus UEFI Bootkit (CVE-2022-21894).** ESET, 2023. UEFI bootkit that bypassed Secure Boot on affected systems, demonstrating firmware-level persistence below the OS. https://www.welivesecurity.com/2023/03/01/blacklotus-uefi-bootkit-myth-confirmed/
 - **CosmicStrand UEFI Firmware Rootkit.** Kaspersky, 2022. Compromised motherboard firmware persisting across OS reinstallation, with concerns about infection through hardware resale channels. https://securelist.com/cosmicstrand-uefi-firmware-rootkit/106973/
 - **iLOBleed, BMC Firmware Rootkit.** Amnpardaz, 2021. First BMC rootkit discovered in the wild. https://threats.amnpardaz.com/en/2021/12/28/implant-arm-ilobleed-a/
 - **CVE-2019-6260, ASPEED BMC "Pantsdown" (CVSS 9.8).** Critical BMC vulnerability enabling host firmware access through unchecked memory mappings. https://nvd.nist.gov/vuln/detail/CVE-2019-6260
 - **NSA ANT Catalog.** Electronic Frontier Foundation, 2013. Public archive of leaked hardware and firmware implant capabilities, illustrating supply-chain and pre-boot compromise concerns. https://www.eff.org/files/2014/01/06/20131230-appelbaum-nsa_ant_catalog.pdf
-- **IETF RATS CoRIM (Concise Reference Integrity Manifests).** IETF Remote ATtestation procedureS Working Group. Standard for vendor publication of expected attestation values used to evaluate SPDM and similar evidence. https://datatracker.ietf.org/wg/rats/about/
+- **IETF RATS CoRIM (Internet-Draft).** draft-ietf-rats-corim: format for publishing expected attestation values used to evaluate SPDM and similar evidence. https://datatracker.ietf.org/doc/draft-ietf-rats-corim/
+- **RFC 9334, RATS Architecture.** IETF. Architecture for remote attestation. https://datatracker.ietf.org/doc/rfc9334/
 - **HPE iLO 6 User Guide, Global Component Integrity.** HPE. iLO option that authenticates server components using SPDM. https://support.hpe.com/hpesc/public/docDisplay?docId=sd00002007en_us&page=GUID-EBC183E0-5805-4BEE-AFF8-02585DC32C87.html&docLocale=en_US
-- **Open Compute Project Security Project.** OCP resources for platform security, including secure boot, attestation, firmware signing, device identity, and secure update practices. https://www.opencompute.org/wiki/Security
+- **OCP Security Project.** Open Compute Project work on platform security, including boot code integrity, security firmware APIs and protocols, and firmware security provisioning. https://www.opencompute.org/projects/security
