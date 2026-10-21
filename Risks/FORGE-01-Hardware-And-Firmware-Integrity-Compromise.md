@@ -46,23 +46,23 @@ Hardware-backed attestation depends on platform and component support, such as a
 
 ### Attestation evidence needs reference values to be meaningful
 
-An attestation measurement only proves what value a device reported. To determine whether that value is trusted, the verifier needs vendor-published reference values for the specific device and firmware version. CoRIM (Concise Reference Integrity Manifest) is the emerging IETF standard for publishing this evidence, but adoption remains limited. NVIDIA is currently the main hardware vendor publishing CoRIM data for its devices.
+An attestation measurement only proves what value a device reported. To determine whether that value is trusted, the verifier needs vendor-published reference values for the specific device and firmware version. CoRIM (Concise Reference Integrity Manifest) is an emerging IETF specification for publishing this evidence, but adoption remains limited. NVIDIA is currently the main hardware vendor publishing CoRIM data for its devices.
 
 ## Prevention and Mitigation Strategies
 
 ### For neocloud providers and data center operators
 
-1. **Establish a hardware root of trust:** Use a hardware or silicon root of trust, together with a TPM or equivalent, to anchor platform identity, record boot measurements, and support attestation. Where supported, use silicon root-of-trust efforts such as Caliptra for chip identity, measured boot, and attestation.
+1. **Establish a hardware root of trust:** Use a hardware or silicon root of trust, together with a TPM or equivalent, to anchor platform identity, securely record boot measurements, and support attestation. Where supported, use silicon root-of-trust implementations such as Caliptra for chip identity, measured boot, and attestation.
 
 2. **Enforce trusted boot and signed firmware:** Enable Secure Boot and Measured Boot, require signed firmware, and prevent unauthorized firmware or boot components from running.
 
 3. **Verify firmware before production use, and plan for partial coverage:** Where supported, use device attestation protocols such as SPDM to validate firmware measurements against vendor-published reference values. Confirm that attestation features are enabled and that reported status reflects firmware integrity, not only device authenticity. For components without attestation coverage, use compensating controls such as re-flashing to known-good images when systems are received or reassigned.
 
-4. **Monitor firmware state across the fleet:** Maintain a continuously updated inventory of firmware versions for components such as BIOS, BMC, GPU, NIC, and storage devices. Treat unexpected firmware changes, baseline drift, or failed or changed attestation results as security events requiring investigation. Alert when nodes deviate from approved firmware baselines, when attestation results change between boots without a corresponding maintenance event, or when attestation fails entirely. Without fleet-level visibility, a single tampered node can remain in production indefinitely.
+4. **Monitor firmware state across the fleet:** Maintain a continuously updated inventory of firmware versions for components such as BIOS, BMC, GPU, NIC, and storage devices. Alert on and investigate nodes that deviate from approved firmware baselines, attestation results that change between boots without a corresponding maintenance event, and failed attestation. Without fleet-level visibility, a single tampered node can go undetected.
 
 5. **Gate sensitive workload placement on attestation:** Integrate remote attestation with schedulers so sensitive workloads run only on verified nodes, and automatically quarantine systems that fail verification.
 
-6. **Secure firmware lifecycle operations:** Restrict access to firmware tooling and management interfaces, require approved update workflows, and re-attest systems during intake, servicing, and tenant transitions.
+6. **Secure firmware lifecycle operations:** Restrict access to firmware tooling and management interfaces (for example, through an approved gateway or bastion host on a network path separate from user access, as described in NIST SP 800-234), require approved update workflows, and repeat the verification steps and applicable compensating controls described in item 3 during intake, servicing, and tenant transitions.
 
 7. **Maintain secure recovery procedures:** Keep known-good firmware images, documented recovery workflows, and replacement criteria so compromised platforms can be restored or removed from service with trust re-established.
 
@@ -96,14 +96,12 @@ A malicious tenant with root access to a bare-metal GPU node modifies component 
 
 ## References
 
-- **DMTF SPDM Specification v1.4.0.** Security Protocol and Data Model standard for firmware attestation and device authentication. https://www.dmtf.org/dsp/DSP0274
-- **NIST SP 800-155 (Draft).** BIOS Integrity Measurement Guidelines. https://csrc.nist.gov/files/pubs/sp/800/155/ipd/docs/draft-sp800-155_dec2011.pdf
-- **TCG TPM Library Specification.** Trusted Computing Group specifications for hardware root of trust. https://trustedcomputinggroup.org/resource/tpm-library-specification/
+- **DMTF SPDM Specification (DSP0274).** Security Protocol and Data Model standard for firmware attestation and device authentication. https://www.dmtf.org/dsp/DSP0274
+- **NIST SP 800-193.** Platform Firmware Resiliency Guidelines (2018). Guidance on protecting platform firmware, detecting unauthorized changes, and recovering securely. https://csrc.nist.gov/publications/detail/sp/800-193/final
+- **NIST SP 800-234.** High-Performance Computing (HPC) Security Overlay (2026). Tailors SP 800-53 moderate-baseline controls for HPC systems, including SI-7 (software, firmware, and information integrity) and AC-17(4) (approved, separated access paths to the management zone). https://csrc.nist.gov/pubs/sp/800/234/final
+- **TCG TPM 2.0 Library Specification.** Trusted Computing Group specifications for hardware root of trust. https://trustedcomputinggroup.org/resources/documents/tpm-library-specification
 - **BlackLotus UEFI Bootkit (CVE-2022-21894).** ESET, 2023. UEFI bootkit that bypassed Secure Boot on affected systems, demonstrating firmware-level persistence below the OS. https://www.welivesecurity.com/2023/03/01/blacklotus-uefi-bootkit-myth-confirmed/
-- **CosmicStrand UEFI Firmware Rootkit.** Kaspersky, 2022. Compromised motherboard firmware persisting across OS reinstallation, with concerns about infection through hardware resale channels. https://securelist.com/cosmicstrand-uefi-firmware-rootkit/106973/
-- **iLOBleed, BMC Firmware Rootkit.** Amnpardaz, 2021. First BMC rootkit discovered in the wild. https://threats.amnpardaz.com/en/2021/12/28/implant-arm-ilobleed-a/
-- **CVE-2019-6260, ASPEED BMC "Pantsdown" (CVSS 9.8).** Critical BMC vulnerability enabling host firmware access through unchecked memory mappings. https://nvd.nist.gov/vuln/detail/CVE-2019-6260
-- **NSA ANT Catalog.** Electronic Frontier Foundation, 2013. Public archive of leaked hardware and firmware implant capabilities, illustrating supply-chain and pre-boot compromise concerns. https://www.eff.org/files/2014/01/06/20131230-appelbaum-nsa_ant_catalog.pdf
-- **IETF RATS CoRIM (Concise Reference Integrity Manifests).** IETF Remote ATtestation procedureS Working Group. Standard for vendor publication of expected attestation values used to evaluate SPDM and similar evidence. https://datatracker.ietf.org/wg/rats/about/
+- **IETF RATS CoRIM (Internet-Draft).** draft-ietf-rats-corim: format for publishing expected attestation values used to evaluate SPDM and similar evidence. https://datatracker.ietf.org/doc/draft-ietf-rats-corim/
+- **RFC 9334, RATS Architecture.** IETF. Architecture for remote attestation. https://datatracker.ietf.org/doc/rfc9334/
 - **HPE iLO 6 User Guide, Global Component Integrity.** HPE. iLO option that authenticates server components using SPDM. https://support.hpe.com/hpesc/public/docDisplay?docId=sd00002007en_us&page=GUID-EBC183E0-5805-4BEE-AFF8-02585DC32C87.html&docLocale=en_US
-- **Open Compute Project Security Project.** OCP resources for platform security, including secure boot, attestation, firmware signing, device identity, and secure update practices. https://www.opencompute.org/wiki/Security
+- **Caliptra.** Open-source silicon root of trust block for datacenter SoCs, providing identity, measured boot, and attestation; hosted by CHIPS Alliance. https://github.com/chipsalliance/Caliptra
