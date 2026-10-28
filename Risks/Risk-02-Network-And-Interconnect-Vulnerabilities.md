@@ -1,4 +1,4 @@
-# FORGE-02: Network & Interconnect Vulnerabilities
+# Risk 02: Network & Interconnect Vulnerabilities
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|

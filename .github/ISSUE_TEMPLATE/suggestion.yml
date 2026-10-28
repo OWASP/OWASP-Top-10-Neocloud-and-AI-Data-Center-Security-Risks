@@ -7,16 +7,16 @@ body:
     attributes:
       label: Which risk?
       options:
-        - FORGE-01 — Hardware & Firmware Integrity Compromise
-        - FORGE-02 — Network & Interconnect Vulnerabilities
-        - FORGE-03 — Unsafe Multi-Tenant Isolation and Resource Reuse
-        - FORGE-04 — Insecure Out-of-Band Management Plane
-        - FORGE-05 — AI Infrastructure Supply Chain Compromise
-        - FORGE-06 — Insecure Facility & Data Center Management Systems
-        - FORGE-07 — Insecure Data and Artifact Handling
-        - FORGE-08 — Certification Gaps & Provider Transparency Failures
-        - FORGE-09 — Insecure Operational Infrastructure Services
-        - FORGE-10 — Vendor Embargo Gaps & Patch Velocity Failures
+        - Risk 01 — Hardware & Firmware Integrity Compromise
+        - Risk 02 — Network & Interconnect Vulnerabilities
+        - Risk 03 — Unsafe Multi-Tenant Isolation and Resource Reuse
+        - Risk 04 — Insecure Out-of-Band Management Plane
+        - Risk 05 — AI Infrastructure Supply Chain Compromise
+        - Risk 06 — Insecure Facility & Data Center Management Systems
+        - Risk 07 — Insecure Data and Artifact Handling
+        - Risk 08 — Certification Gaps & Provider Transparency Failures
+        - Risk 09 — Insecure Operational Infrastructure Services
+        - Risk 10 — Vendor Embargo Gaps & Patch Velocity Failures
         - General / more than one risk
         - New content (mapping, section, or risk)
     validations:

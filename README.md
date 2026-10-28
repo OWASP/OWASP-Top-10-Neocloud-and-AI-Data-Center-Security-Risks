@@ -1,10 +1,10 @@
-# The Top 10 Neocloud and AI Data Center Security Risks
+# The OWASP Top 10 Neocloud and AI Data Center Security Risks
 
-![FORGE - The Top 10 Neocloud and AI Data Center Security Risks. Harden the metal beneath the model.](Images/forge-banner.png)
+![The OWASP Top 10 Neocloud and AI Data Center Security Risks](Images/banner.png)
 
-> **FORGE** - Harden the metal beneath the model.
+> Harden the metal beneath the model.
 >
-> 🌐 **Website:** [https://forge-framework.io](https://forge-framework.io)
+> 🌐 **Project page:** [owasp.org/projects/top-10-neocloud-and-ai-data-center-security-risks](https://owasp.org/projects/top-10-neocloud-and-ai-data-center-security-risks)
 
 ## Executive Summary
 
@@ -65,34 +65,22 @@ Have feedback or want to contribute? Open a [GitHub issue](https://github.com/OW
 - Assaf Morag (Security Researcher)
 - James Berthoty (Founder & CEO @ Latio)
 
-## The Five Domains of the FORGE Lens
-
-FORGE domains define the evaluation lens: the infrastructure areas where AI security risk lives. The Risk Matrix below maps individual risks into these domains.
-
-| Domain | Name | Description |
-|--------|------|-------------|
-| **F** | Fleet integrity | Trust in the hardware, firmware, software artifacts, images, dependencies, and supply paths that make up the AI infrastructure fleet. |
-| **O** | Operations & management planes | Privileged systems used to control, automate, and administer AI infrastructure, including BMCs, schedulers, orchestration, automation, and admin tooling. |
-| **R** | Resource isolation | The boundaries that separate tenants, workloads, execution environments, and reused infrastructure across shared AI systems. |
-| **G** | Grid | The networking fabrics and facility systems that connect AI clusters and keep them powered, cooled, and operational. |
-| **E** | Evidence & exposure management | The evidence customers need to understand provider security maturity, architectural scope, exposed services, and patch velocity. |
-
 ## The Top 10 Risks
 
-FORGE IDs are ordered by severity, from highest to lowest. The matrix groups each risk by domain and shows its likelihood, impact, and detection difficulty.
+Risks are ordered by severity, from highest to lowest. The table shows each risk's likelihood, impact, and detection difficulty.
 
-| ID | Domain | Risk | Risk Level | Likelihood | Impact | Detection Difficulty |
-|---|---|---|---|---|---|---|
-| [FORGE-01](Risks/FORGE-01-Hardware-And-Firmware-Integrity-Compromise.md) | F | Hardware & Firmware Integrity Compromise | Critical | Medium | Severe | High |
-| [FORGE-02](Risks/FORGE-02-Network-And-Interconnect-Vulnerabilities.md) | G | Network & Interconnect Vulnerabilities | Critical | Medium | Severe | High |
-| [FORGE-03](Risks/FORGE-03-Unsafe-Multi-Tenant-Isolation-And-Resource-Reuse.md) | R | Unsafe Multi-Tenant Isolation and Resource Reuse | Critical | Low | Severe | Very High |
-| [FORGE-04](Risks/FORGE-04-Insecure-Out-Of-Band-Management-Plane.md) | O | Insecure Out-of-Band Management Plane | Critical | Medium | High | Very High |
-| [FORGE-05](Risks/FORGE-05-AI-Infrastructure-Supply-Chain-Compromise.md) | F | AI Infrastructure Supply Chain Compromise | Critical | High | High | High |
-| [FORGE-06](Risks/FORGE-06-Insecure-Facility-And-Datacenter-Management-Systems.md) | G | Insecure Facility & Data Center Management Systems | High | Low | High | Very High |
-| [FORGE-07](Risks/FORGE-07-Insecure-Data-And-Artifact-Handling.md) | R | Insecure Data and Artifact Handling | High | High | High | Medium |
-| [FORGE-08](Risks/FORGE-08-Certification-Gaps-And-Provider-Transparency-Failures.md) | E | Certification Gaps & Provider Transparency Failures | High | Medium | High | Medium |
-| [FORGE-09](Risks/FORGE-09-Insecure-Operational-Infrastructure-Services.md) | O | Insecure Operational Infrastructure Services | High | High | Medium | Medium |
-| [FORGE-10](Risks/FORGE-10-Vendor-Embargo-Gaps-And-Patch-Velocity-Failures.md) | E | Vendor Embargo Gaps & Patch Velocity Failures | Medium | Medium | Medium | Low |
+| ID | Risk | Risk Level | Likelihood | Impact | Detection Difficulty |
+|---|---|---|---|---|---|
+| [Risk 01](Risks/Risk-01-Hardware-And-Firmware-Integrity-Compromise.md) | Hardware & Firmware Integrity Compromise | Critical | Medium | Severe | High |
+| [Risk 02](Risks/Risk-02-Network-And-Interconnect-Vulnerabilities.md) | Network & Interconnect Vulnerabilities | Critical | Medium | Severe | High |
+| [Risk 03](Risks/Risk-03-Unsafe-Multi-Tenant-Isolation-And-Resource-Reuse.md) | Unsafe Multi-Tenant Isolation and Resource Reuse | Critical | Low | Severe | Very High |
+| [Risk 04](Risks/Risk-04-Insecure-Out-Of-Band-Management-Plane.md) | Insecure Out-of-Band Management Plane | Critical | Medium | High | Very High |
+| [Risk 05](Risks/Risk-05-AI-Infrastructure-Supply-Chain-Compromise.md) | AI Infrastructure Supply Chain Compromise | Critical | High | High | High |
+| [Risk 06](Risks/Risk-06-Insecure-Facility-And-Datacenter-Management-Systems.md) | Insecure Facility & Data Center Management Systems | High | Low | High | Very High |
+| [Risk 07](Risks/Risk-07-Insecure-Data-And-Artifact-Handling.md) | Insecure Data and Artifact Handling | High | High | High | Medium |
+| [Risk 08](Risks/Risk-08-Certification-Gaps-And-Provider-Transparency-Failures.md) | Certification Gaps & Provider Transparency Failures | High | Medium | High | Medium |
+| [Risk 09](Risks/Risk-09-Insecure-Operational-Infrastructure-Services.md) | Insecure Operational Infrastructure Services | High | High | Medium | Medium |
+| [Risk 10](Risks/Risk-10-Vendor-Embargo-Gaps-And-Patch-Velocity-Failures.md) | Vendor Embargo Gaps & Patch Velocity Failures | Medium | Medium | Medium | Low |
 
 Each risk follows a consistent structure: **Definition**, **Description**, **Impact and Failure Modes**, **Prevention and Mitigation Strategies** (for providers and for customers), **Attack Scenarios**, and **References**.
 

@@ -1,4 +1,4 @@
-# FORGE-10: Vendor Embargo Gaps & Patch Velocity Failures
+# Risk 10: Vendor Embargo Gaps & Patch Velocity Failures
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|
@@ -16,7 +16,7 @@ Recent NVIDIA Container Toolkit vulnerabilities illustrate the problem. Publicly
 
 Even when fixes exist, GPU environments create strong incentives to delay deployment. Driver and toolkit updates can require node drains and job disruption. Firmware updates are operationally harder and often treated as risky maintenance. Over time, this causes version fragmentation across large fleets, where some nodes update quickly while others continue running older, vulnerable software. Without clear remediation targets, customer visibility, and version enforcement, exposed nodes can persist long after fixes are available.
 
-> **See also:** [FORGE-05: AI Infrastructure Supply Chain Compromise](FORGE-05-AI-Infrastructure-Supply-Chain-Compromise.md) for dependency-level risks that intersect with patch velocity.
+> **See also:** [Risk 05: AI Infrastructure Supply Chain Compromise](Risk-05-AI-Infrastructure-Supply-Chain-Compromise.md) for dependency-level risks that intersect with patch velocity.
 
 ## Impact / Examples
 

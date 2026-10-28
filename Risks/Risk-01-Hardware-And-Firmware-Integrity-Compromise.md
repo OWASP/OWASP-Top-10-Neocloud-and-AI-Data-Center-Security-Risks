@@ -1,4 +1,4 @@
-# FORGE-01: Firmware & Hardware Integrity Compromise
+# Risk 01: Firmware & Hardware Integrity Compromise
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|
@@ -20,7 +20,7 @@ The BMC is another important path because it can control power, remote console a
 
 This threat is not theoretical. [BlackLotus](https://www.welivesecurity.com/2023/03/01/blacklotus-uefi-bootkit-myth-confirmed/) showed that UEFI bootkits can execute before the OS loads, and [CosmicStrand](https://securelist.com/cosmicstrand-uefi-firmware-rootkit/106973/) showed that motherboard firmware implants can persist across OS reinstalls and raise concerns around resale or refurbishment channels.
 
-> **See also:** [FORGE-04: Insecure Out-of-Band Management Plane](FORGE-04-Insecure-Out-Of-Band-Management-Plane.md) for management plane attacks that can lead to firmware compromise.
+> **See also:** [Risk 04: Insecure Out-of-Band Management Plane](Risk-04-Insecure-Out-Of-Band-Management-Plane.md) for management plane attacks that can lead to firmware compromise.
 
 ## Impact and Failure Modes
 
