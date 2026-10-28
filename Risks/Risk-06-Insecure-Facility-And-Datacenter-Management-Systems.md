@@ -1,4 +1,4 @@
-# FORGE-06: Insecure Facility & Data Center Management Systems
+# Risk 06: Insecure Facility & Data Center Management Systems
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|

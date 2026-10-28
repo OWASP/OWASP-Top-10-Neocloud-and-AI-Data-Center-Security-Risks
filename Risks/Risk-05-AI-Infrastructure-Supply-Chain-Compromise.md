@@ -1,4 +1,4 @@
-# FORGE-05: AI Infrastructure Supply Chain Compromise
+# Risk 05: AI Infrastructure Supply Chain Compromise
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|
@@ -18,7 +18,7 @@ Both lanes share the same core problem: components are often trusted because the
 
 Much of this risk is addressable with widely available controls: signed images/artifacts, build provenance, dependency pinning, SBOMs, registry scanning, controlled internal mirrors, and safer model formats like safetensors. Exposure concentrates where these controls aren't adopted or where artifacts flow directly from public sources into production.
 
-> **See also:** [FORGE-10: Vendor Embargo Gaps & Patch Velocity Failures](FORGE-10-Vendor-Embargo-Gaps-And-Patch-Velocity-Failures.md) for container runtime and driver patching risks.
+> **See also:** [Risk 10: Vendor Embargo Gaps & Patch Velocity Failures](Risk-10-Vendor-Embargo-Gaps-And-Patch-Velocity-Failures.md) for container runtime and driver patching risks.
 
 ## Impact and Failure Modes
 

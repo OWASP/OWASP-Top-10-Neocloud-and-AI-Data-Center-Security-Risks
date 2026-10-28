@@ -1,4 +1,4 @@
-# FORGE-03: Unsafe Multi-Tenant Isolation and Resource Reuse
+# Risk 03: Unsafe Multi-Tenant Isolation and Resource Reuse
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|

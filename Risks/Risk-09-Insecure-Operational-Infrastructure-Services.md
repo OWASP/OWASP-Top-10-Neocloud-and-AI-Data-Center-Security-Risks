@@ -1,4 +1,4 @@
-# FORGE-09: Insecure Operational Infrastructure Services
+# Risk 09: Insecure Operational Infrastructure Services
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|
