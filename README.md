@@ -1,6 +1,6 @@
-# The OWASP Top 10 Neocloud and AI Data Center Security Risks
+# Top 10 Neocloud and AI Data Center Security Risks
 
-![The OWASP Top 10 Neocloud and AI Data Center Security Risks](Images/banner.png)
+![Top 10 Neocloud and AI Data Center Security Risks](Images/banner.png)
 
 > Harden the metal beneath the model.
 >
