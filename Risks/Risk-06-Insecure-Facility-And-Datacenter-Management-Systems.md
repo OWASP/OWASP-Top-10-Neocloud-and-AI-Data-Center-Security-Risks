@@ -6,7 +6,7 @@
 
 ## Definition
 
-This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, and DCIM for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload.
+This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, DCIM for rack and asset tracking, and PACS for badge readers and door controllers. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload.
 
 ## Description
 
@@ -15,6 +15,7 @@ AI data centers depend on facility infrastructure that is often invisible to sec
 These systems matter more for AI infrastructure than conventional compute because GPU clusters operate closer to thermal and power limits than traditional server fleets. Modern GPU racks can draw 50 to 130 kW or more, well above the 5 to 15 kW common in earlier generations. A facility-side disruption to cooling or power can stop a multi-day training run, corrupt checkpoints across many nodes, or force emergency shutdown of an entire hall.
 
 Facility systems are often less hardened than server-side infrastructure. Legacy OT protocols such as BACnet, Modbus, and SNMPv1 are still common and may lack authentication or encryption by default. Vendor and integrator remote access can be broad or long-lived, and patch cycles are often slower than for IT systems. Exposure is highest in legacy installations, default configurations, abandoned or unpatched products, broad vendor-access setups, and environments where facility and IT security are not jointly owned or verified.
+> **See also:** [Risk 01: Firmware & Hardware Integrity Compromise](Risk-01-Hardware-And-Firmware-Integrity-Compromise.md) and [Risk 04: Insecure Out-of-Band Management Plane](Risk-04-Insecure-Out-Of-Band-Management-Plane.md) for what an attacker can do to servers, firmware, and BMCs once physical controls have been bypassed.
 
 ## Impact and Failure Modes
 
@@ -29,6 +30,10 @@ Controls integrators and equipment vendors are often given persistent remote acc
 ### Internet-exposed management interfaces
 
 Public research has identified tens of thousands of data center management interfaces, including DCIM platforms, cooling controllers, UPS units, and rack monitors, reachable directly from the internet. Exposure is especially dangerous when combined with default credentials, weak authentication, or missing VPN and jump-host controls.
+
+### Physical access control systems that can be bypassed through the network or the reader
+
+PACS sit at the boundary between the digital and physical worlds, so a software flaw can become a door that opens. Door controllers are networked embedded devices with web interfaces and firmware of their own, and they are often sold under many OEM brands. In 2022, eight CVEs (CVE-2022-31479 through CVE-2022-31486) were published for a widely OEM-integrated family of access control panels, including flaws reachable without authentication that CISA says could let an attacker gain device access, modify onboard relays, change configuration files, and cause denial of service. At the edge, the legacy Wiegand reader interface sends credential data unencrypted and in one direction, so a device spliced onto reader wiring can capture and replay credentials, and the controller cannot supervise the reader. Once an attacker is physically inside a data hall, many of the network-level controls described in other risks no longer stand between them and the hardware.
 
 ### Facility software maintained by small teams or single vendors
 
@@ -48,6 +53,8 @@ BMS, EPMS, DCIM, and related facility platforms may be maintained by small vendo
 
 5. **Patch facility software and track lifecycle:** Maintain an inventory of BMS, EPMS, DCIM, and physical security software versions, including which products are still actively maintained by their vendors. Apply vendor patches on a defined schedule, and plan ahead for products that are abandoned or near end-of-life.
 
+6. **Secure the physical access control chain end to end:** Where readers and controllers support it, use OSDP with Secure Channel in place of Wiegand, and supervise reader tamper and offline states. Keep door controllers and access management servers on the segmented facility network, disable web interfaces and services that are not needed, and apply least privilege and multi-factor authentication to the accounts that can enroll credentials or change door schedules. Alert on forced, held-open, and controller-offline events for data halls and cages, and retain door logs outside the access control platform so they can be reconciled if the platform itself is compromised.
+
 ### For customers evaluating a provider
 
 Facility infrastructure sits almost entirely on the provider side and is rarely visible from inside a rented node, so this is about checking what the provider publishes and asking directly where documentation is silent.
@@ -55,6 +62,8 @@ Facility infrastructure sits almost entirely on the provider side and is rarely 
 1. **Check the provider's security and trust documentation:** Review trust or security pages, whitepapers, and compliance scope for how facility and physical infrastructure is covered. Facility, power, and environmental controls are often in scope for these reports, so their presence or absence is a useful signal.
 
 2. **Ask directly where the documentation is silent:** Published material rarely covers everything, so ask how facility systems (BMS, EPMS, DCIM) are segmented from tenant and public networks, how integrator and equipment-vendor remote access is governed (time-bound, individually attributed, logged), and whether facility management interfaces are internet-exposed.
+
+3. **Ask how physical access to your hardware is controlled and evidenced:** Ask who can enter the data hall or cage that holds your systems, whether access is individually attributed and reviewed, and whether the provider can supply independent door-access records after an incident.
 
 ## Attack Scenarios
 
@@ -65,6 +74,10 @@ A controls integrator providing remote support to several data center operators 
 ### Internet-Exposed DCIM as a Map for a Targeted Attack
 
 A DCIM platform is reachable from the public internet because it was made accessible for remote facilities staff and was never placed behind a VPN or jump host. The attacker discovers the instance through internet-wide scanning and logs in using weak or default credentials. The DCIM inventory reveals which racks belong to which tenants, where high-density GPU clusters are located, and which power feeds and cooling zones serve them. The attacker uses this information to plan a targeted disruption or physical-access attempt against a specific high-value tenant.
+
+### Access Control Compromise to Data Hall Entry
+
+An attacker gains a foothold on a facility network, for example through an integrator's remote-access path as in the first scenario. A door controller guarding a GPU data hall runs outdated firmware with an unauthenticated flaw in its web interface. The attacker uses it to change relay or schedule settings so the hall's door unlocks outside normal hours. Because door-state monitoring and logging depend on the same controller, the entry looks routine or leaves no record. An accomplice walks in, connects to the management ports on several servers, and attempts the firmware and BMC attacks described in Risk 01 and Risk 04, without ever touching a tenant workload.
 
 ## References
 
@@ -77,3 +90,7 @@ A DCIM platform is reachable from the public internet because it was made access
 - **Target 2013 Data Breach Analysis.** Senate Commerce Committee staff report. Documents how an HVAC vendor's compromised remote access was used as the initial access vector into the Target retail network. https://www.commerce.senate.gov/services/files/24d3c229-4f2f-405d-b8db-a3a67f183883
 - **ICS-CERT Advisories on Building Management and Power Systems.** CISA. Ongoing vendor advisories covering vulnerabilities in BMS, EPMS, UPS, and DCIM products from manufacturers including Schneider Electric, Siemens, Tridium, and Vertiv. https://www.cisa.gov/news-events/cybersecurity-advisories
 - **openDCIM Project.** Open-source DCIM platform widely deployed in academic and commercial data centers. The project's lead maintainer announced retirement in 2025 with no successor identified at the time of writing. https://github.com/opendcim/openDCIM
+- **ICSA-22-153-01, Carrier LenelS2 HID Mercury Access Panels.** CISA. Advisory covering CVE-2022-31479 through CVE-2022-31486 in access control panels, including unauthenticated command injection, buffer overflow, and firmware upload flaws, with mitigations for network exposure. https://www.cisa.gov/news-events/ics-advisories/icsa-22-153-01
+- **A Door Isn't a Door When It's Ajar, Part 2.** Trellix Threat Labs. Technical write-up of how the access control panel vulnerabilities were found and chained to unauthenticated remote code execution as root. https://www.trellix.com/blogs/research/a-door-is-not-a-door-when-it-is-ajar-part-2/
+- **Open Supervised Device Protocol (OSDP).** Security Industry Association. Open reader-to-controller communications standard (IEC 60839-11-5) with an AES-128 Secure Channel and supervised connections. https://www.securityindustry.org/industry-standards/open-supervised-device-protocol/
+- **There Is a Hole in the Boat: Why Access Control Professionals Need to Move From Wiegand to OSDP.** David Coleman, Paige Datacom Solutions, in SIA Technology Insights (Security Industry Association), 2021. Explains how unencrypted Wiegand traffic can be captured and replayed with inexpensive hardware, and how OSDP supervision and encryption address it. https://www.securityindustry.org/2021/11/09/there-is-a-hole-in-the-boat-why-access-control-professionals-need-to-move-from-wiegand-to-osdp/
