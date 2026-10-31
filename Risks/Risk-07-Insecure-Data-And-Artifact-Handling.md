@@ -62,7 +62,7 @@ AI storage platforms generally support encryption at rest, per-filesystem audit 
 
 2. **Enforce least privilege on your model storage and registries:** Apply granular access controls to repositories, object stores, file systems, backup locations, and registries, with separate permissions for reading, exporting, approving, deleting, and deploying artifacts.
 
-3. **Require approval and audit for high-impact actions:** Downloads, exports, permission changes, model promotions, backup restores, and cross-boundary transfers should generate tamper-resistant records and require approval where they could expose production or frontier models.
+3. **Require approval and audit for high-impact actions:** Downloads, exports, permission changes, model promotions, backup restores, and cross-boundary transfers should generate tamper-resistant records and require approval where they could expose production or frontier models. Before promoting a finished model produced in your environment to serving, verify the model files required for serving against the approved model release's digest manifest signed by a trusted identity; block promotion if the signature is missing or verification fails, and ensure serving loads exactly the verified files. A valid signature shows the files are unchanged since signing, not that the model is safe.
 
 4. **Monitor for unusual artifact movement:** Alert on bulk downloads, unexpected copies, transfers to new destinations, and large movements of model file types (.pt, .pth, .safetensors, .onnx, .h5), which traditional DLP may not classify as sensitive by default.
 
@@ -94,3 +94,4 @@ A serving node keeps local model file copies to reduce startup time. After a wor
 - **Extracting Training Data from Large Language Models.** Carlini et al., USENIX Security 2021. Shows that LLMs memorize and can leak training data. https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-extracting
 - **Hermes Attack: Steal DNN Models with Lossless Inference Accuracy.** Zhu et al., USENIX Security 2021. GPU side-channel attack enabling model extraction. https://www.usenix.org/conference/usenixsecurity21/presentation/zhu
 - **NVIDIA Trusted Computing Solutions.** NVIDIA. Confidential computing for GPU workloads. https://docs.nvidia.com/confidential-computing/index.html
+- **OpenSSF Model Signing (OMS) Specification v1.0.** OpenSSF. Defines a signed manifest of model-file digests, with verification of missing or modified files and, by default, rejection of unsigned files. https://github.com/ossf/model-signing-spec/blob/main/spec/v1.0.md
