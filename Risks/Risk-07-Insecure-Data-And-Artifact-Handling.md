@@ -64,9 +64,11 @@ AI storage platforms generally support encryption at rest, per-filesystem audit 
 
 3. **Require approval and audit for high-impact actions:** Downloads, exports, permission changes, model promotions, backup restores, and cross-boundary transfers should generate tamper-resistant records and require approval where they could expose production or frontier models.
 
-4. **Monitor for unusual artifact movement:** Alert on bulk downloads, unexpected copies, transfers to new destinations, and large movements of model file types (.pt, .pth, .safetensors, .onnx, .h5), which traditional DLP may not classify as sensitive by default.
+4. **Sign and verify finished models before serving:** When a model trained in your environment is approved for release, sign a manifest of its file digests using an identity separate from the systems that store the model. Before promoting it to serving, verify the signature and every file against the manifest, and block promotion if the signature is missing or any file is missing, changed, or unlisted.
 
-5. **Ask how the provider protects the storage beneath your models:** When models run on third-party infrastructure, the storage layer isn't fully visible from inside your workload. Ask whether the provider requires client authentication, separates tenants at the storage layer, encrypts at rest, and audits storage access. Treat a provider that cannot answer as carrying residual risk.
+5. **Monitor for unusual artifact movement:** Alert on bulk downloads, unexpected copies, transfers to new destinations, and large movements of model file types (.pt, .pth, .safetensors, .onnx, .h5), which traditional DLP may not classify as sensitive by default.
+
+6. **Ask how the provider protects the storage beneath your models:** When models run on third-party infrastructure, the storage layer isn't fully visible from inside your workload. Ask whether the provider requires client authentication, separates tenants at the storage layer, encrypts at rest, and audits storage access. Treat a provider that cannot answer as carrying residual risk.
 
 ## Attack Scenarios
 
@@ -94,3 +96,4 @@ A serving node keeps local model file copies to reduce startup time. After a wor
 - **Extracting Training Data from Large Language Models.** Carlini et al., USENIX Security 2021. Shows that LLMs memorize and can leak training data. https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-extracting
 - **Hermes Attack: Steal DNN Models with Lossless Inference Accuracy.** Zhu et al., USENIX Security 2021. GPU side-channel attack enabling model extraction. https://www.usenix.org/conference/usenixsecurity21/presentation/zhu
 - **NVIDIA Trusted Computing Solutions.** NVIDIA. Confidential computing for GPU workloads. https://docs.nvidia.com/confidential-computing/index.html
+- **OpenSSF Model Signing (OMS) Specification v1.0.** OpenSSF. Defines a signed manifest of model-file digests, with verification of missing or modified files and, by default, rejection of unsigned files. https://github.com/ossf/model-signing-spec/blob/main/spec/v1.0.md
