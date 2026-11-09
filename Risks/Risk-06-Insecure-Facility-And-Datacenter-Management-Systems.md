@@ -6,7 +6,7 @@
 
 ## Definition
 
-This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, and DCIM for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload.
+This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include [BMS](../GLOSSARY.md#building-management-system-bms) for cooling and environmental controls, [EPMS](../GLOSSARY.md#electrical-power-monitoring-system-epms) for electrical equipment, and [DCIM](../GLOSSARY.md#data-center-infrastructure-management-dcim) for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload.
 
 ## Description
 

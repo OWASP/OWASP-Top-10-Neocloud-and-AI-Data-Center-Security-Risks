@@ -6,7 +6,7 @@
 
 ## Definition
 
-Network & Interconnect Vulnerabilities arise when high-performance fabrics used by AI clusters-including InfiniBand, RoCE, and RDMA-based communication paths-lack proper isolation, monitoring, or protection. These fabrics prioritize throughput and low latency, so weak controls can expose backend AI environments to discovery, lateral movement, data interception, denial of service, or workload manipulation.
+Network & Interconnect Vulnerabilities arise when high-performance fabrics used by AI clusters-including [InfiniBand](../GLOSSARY.md#infiniband), [RoCE](../GLOSSARY.md#rdma-over-converged-ethernet-roce), [RDMA](../GLOSSARY.md#remote-direct-memory-access-rdma)-lack proper isolation, monitoring, or protection. These fabrics prioritize throughput and low latency, so weak controls can expose backend AI environments to discovery, lateral movement, data interception, denial of service, or workload manipulation.
 
 ## Description
 

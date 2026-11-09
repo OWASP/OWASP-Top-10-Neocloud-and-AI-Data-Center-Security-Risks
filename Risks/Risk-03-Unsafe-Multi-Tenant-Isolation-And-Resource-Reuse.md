@@ -10,7 +10,7 @@ This risk occurs when shared, partitioned, or reassigned AI infrastructure fails
 
 ## Description
 
-AI infrastructure often relies on shared, partitioned, or rapidly reassigned compute resources to maximize scarce accelerator capacity. This creates tenant-isolation problems because workloads may share more than an application API - they may also share physical GPUs, bare-metal hosts, local storage, host kernels, driver stacks, container runtimes, orchestration layers, DNS/service discovery systems, RDMA fabrics, and high-speed interconnects.
+AI infrastructure often relies on shared, partitioned, or rapidly reassigned compute resources to maximize scarce accelerator capacity. This creates [tenant-isolation](../GLOSSARY.md#tenant-isolation) problems because workloads may share more than an application API - they may also share physical GPUs, bare-metal hosts, local storage, host kernels, driver stacks, container runtimes, orchestration layers, DNS/service discovery systems, [RDMA](../GLOSSARY.md#remote-direct-memory-access-rdma) fabrics, and high-speed interconnects.
 
 This risk focuses on failures in how shared or reassigned capacity is isolated, cleaned, and reused across tenants, workloads, or execution environments. The risk arises when isolation at one layer is mistaken for isolation across the full stack. A workload may be separated by a Kubernetes namespace, container runtime, MIG partition, vGPU profile, or dedicated GPU assignment, while still sharing underlying host, driver, storage, network, or orchestration layers.
 
@@ -60,7 +60,7 @@ Research such as Whispering Pixels and NVBleed has shown that GPU state, memory 
 
 6. **Isolate shared model-loading paths:** Treat model loaders, inference services, notebook runtimes, and artifact-processing pipelines as tenant-boundary components when they process customer-supplied files. Do not load untrusted models, checkpoints, or serialized artifacts inside shared or highly privileged services unless the loading path is sandboxed and isolated.
 
-7. **Offer stronger isolation and attestation options for high-sensitivity workloads:** Where the platform supports it, provide dedicated hosts, dedicated clusters, or hardware-backed confidential computing / TEE-based isolation with remote attestation for customers that require stronger protection from the host, hypervisor, or provider-managed layer. Clearly document whether capabilities such as NVIDIA GPU Confidential Computing on H100/H200 are available, what they protect, what remains trusted, and what evidence customers can verify before workload execution.
+7. **Offer stronger isolation and attestation options for high-sensitivity workloads:** Where the platform supports it, provide dedicated hosts, dedicated clusters, or hardware-backed confidential computing / TEE-based isolation with remote ...TEE-based isolation with remote [attestation](../GLOSSARY.md#attestation) for customers... for customers that require stronger protection from the host, hypervisor, or provider-managed layer. Clearly document whether capabilities such as NVIDIA GPU Confidential Computing on H100/H200 are available, what they protect, what remains trusted, and what evidence customers can verify before workload execution.
 
 8. **Keep the GPU virtualization stack patched:** Quickly patch host-side GPU management components, drivers, and device plugins in vGPU, MIG, or other GPU-sharing setups (for example CVE-2024-0099).
 

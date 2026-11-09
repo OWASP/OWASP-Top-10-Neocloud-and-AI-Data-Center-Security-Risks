@@ -14,7 +14,7 @@ AI systems rely on high-value data and derived artifacts that are collected, sto
 
 The risk is broader than model theft. AI data exposure can reveal training sources, user activity, sensitive information, proprietary methods, or model behavior. Modified data or artifacts can poison downstream training, fine-tuning, evaluation, or deployment. Though mechanics may resemble ordinary data exfiltration or tampering, the impact is AI-specific because these assets can be reused, reconstructed, or silently influence future systems.
 
-This risk emerges when AI data and artifacts are stored, transferred, backed up, cached, mounted, or loaded into runtime environments without strong access controls, encryption, tenant isolation, integrity validation, lifecycle management, and auditability. In AI infrastructure, this includes datasets, object stores, model registries, experiment systems, local caches, backups, and high-performance or distributed storage systems.
+This risk emerges when AI data and artifacts are stored, transferred, backed up, cached, mounted, or loaded into runtime environments without strong access controls, encryption, [tenant isolation](../GLOSSARY.md#tenant-isolation), integrity validation, lifecycle management, and auditability. In AI infrastructure, this includes datasets, object stores, model registries, experiment systems, local caches, backups, and high-performance or distributed storage systems.
 
 If these paths are weakly isolated, over-permissioned, unaudited, or poorly cleaned between workloads or tenants, a compromised identity, compute node, tenant workload, notebook, data pipeline, storage client, registry, or deployment system can turn an initial foothold into long-term loss of confidentiality, integrity, provenance, and control.
 
@@ -48,7 +48,7 @@ AI storage platforms generally support encryption at rest, per-filesystem audit 
 
 ### For neocloud providers and data center operators
 
-1. **Enforce authentication and tenant isolation at the storage layer:** Require client authentication for all filesystem mounts and storage protocols on AI storage platforms. Enforce tenant separation at the storage layer itself, not only in the scheduler or model registry. Restrict storage-network reachability only to approved hosts.
+1. **Enforce authentication and [tenant isolation](../GLOSSARY.md#tenant-isolation) at the storage layer:** Require client authentication for all filesystem mounts and storage protocols on AI storage platforms. Enforce tenant separation at the storage layer itself, not only in the scheduler or model registry. Restrict storage-network reachability only to approved hosts.
 
 2. **Encrypt and audit the storage substrate:** Enable encryption at rest on clusters holding model artifacts and training data. Log high-impact events (mounts, deletes, permission changes, snapshots, administrative actions) to an independent system the storage administrator cannot reach or modify. Reserve detailed access logging for the most sensitive filesystems since full per-read logging is often impractical at scale.
 

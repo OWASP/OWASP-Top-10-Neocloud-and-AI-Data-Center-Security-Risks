@@ -6,17 +6,17 @@
 
 ## Definition
 
-AI Infrastructure Supply Chain Compromise refers to introducing compromised, tampered, or untrusted components into AI environments through upstream supply-chain relationships. This encompasses hardware, firmware, software artifacts, images, and infrastructure templates crossing from vendors, integrators, registries, public sources, or internal mirrors into an operator's trusted environment.
+AI Infrastructure Supply Chain Compromise refers to introducing compromised, tampered, or untrusted components into AI environments through upstream supply-chain relationships. This encompasses hardware, [firmware](../GLOSSARY.md#firmware), software artifacts, images, and infrastructure templates crossing from vendors, integrators, registries, public sources, or internal mirrors into an operator's trusted environment.
 
 ## Description
 
-The AI infrastructure supply chain has two lanes. The physical lane covers servers, accelerators, NICs, storage devices, BMCs, and other components passing through manufacturers, integrators, logistics providers, and refurbishment paths before reaching production. Systems may arrive with firmware, management configuration, or node images prepared by third parties without independent operator verification.
+The AI infrastructure supply chain has two lanes. The physical lane covers servers, accelerators, NICs, storage devices, [BMCs](../GLOSSARY.md#baseboard-management-controller-bmc), and other components passing through manufacturers, integrators, logistics providers, and refurbishment paths before reaching production. Systems may arrive with firmware, management configuration, or node images prepared by third parties without independent operator verification.
 
 The digital lane covers container images, GPU drivers and runtimes, Python packages, Kubernetes operators, model-serving components, infrastructure-as-code templates, and model artifacts from vendor catalogs, public registries, open-source repositories, or internal mirrors. These may be legitimate, maliciously tampered, outdated, misconfigured, or sourced unexpectedly.
 
 Both lanes share the same core problem: components are often trusted because they arrive through an expected path, not because their integrity and provenance were independently verified. This dependency persists throughout the product lifecycle as operators rely on vendors for cryptographic mechanism updates as standards evolve.
 
-Much of this risk is addressable with widely available controls: signed images/artifacts, build provenance, dependency pinning, SBOMs, registry scanning, controlled internal mirrors, and safer model formats like safetensors. Exposure concentrates where these controls aren't adopted or where artifacts flow directly from public sources into production.
+Much of this risk is addressable with widely available controls: signed images/artifacts, build provenance, dependency pinning, [SBOMs](../GLOSSARY.md#software-bill-of-materials-sbom), registry scanning, controlled internal mirrors, and safer model formats like safetensors. Exposure concentrates where these controls aren't adopted or where artifacts flow directly from public sources into production.
 
 > **See also:** [Risk 10: Vendor Embargo Gaps & Patch Velocity Failures](Risk-10-Vendor-Embargo-Gaps-And-Patch-Velocity-Failures.md) for container runtime and driver patching risks.
 

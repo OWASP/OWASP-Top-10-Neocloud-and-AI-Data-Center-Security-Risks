@@ -4,6 +4,9 @@
 
 > Harden the metal beneath the model.
 >
+> 🌐 **Website:** [https://forge-framework.io](https://forge-framework.io)
+>
+> 📖 **Security Glossary:** [FORGE Security Glossary](GLOSSARY.md)
 > 🌐 **Project page:** [owasp.org/projects/top-10-neocloud-and-ai-data-center-security-risks](https://owasp.org/projects/top-10-neocloud-and-ai-data-center-security-risks)
 
 ## Executive Summary

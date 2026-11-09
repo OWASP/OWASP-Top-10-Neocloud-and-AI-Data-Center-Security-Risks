@@ -6,11 +6,11 @@
 
 ## Definition
 
-This risk arises when systems managing physical infrastructure outside the host OS are exposed, weakly authenticated, or poorly monitored. The management plane encompasses BMCs, IPMI and Redfish interfaces, dedicated management networks, jump hosts, fleet-management and firmware-update tools, and management switches.
+This risk arises when systems managing physical infrastructure outside the host OS are exposed, weakly authenticated, or poorly monitored. The management plane encompasses [BMCs](../GLOSSARY.md#baseboard-management-controller-bmc), [IPMI](../GLOSSARY.md#intelligent-platform-management-interface-ipmi) and [Redfish](../GLOSSARY.md#redfish) interfaces, dedicated management networks, jump hosts, fleet-management and firmware-update tools, and management switches.
 
 ## Description
 
-In AI data centers, out-of-band (OOB) management enables administrators to control physical infrastructure independently of the host operating system. The BMC is a separate management processor on each server handling remote functions like power control, hardware monitoring, firmware updates, remote console access, and virtual media.
+In AI data centers, [out-of-band (OOB) management](../GLOSSARY.md#out-of-band-oob-management) enables administrators to control physical infrastructure independently of the host operating system. The BMC is a separate management processor on each server handling remote functions like power control, hardware monitoring, firmware updates, remote console access, and virtual media.
 
 The management plane extends beyond individual BMCs to include:
 

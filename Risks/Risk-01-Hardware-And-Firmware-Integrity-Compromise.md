@@ -6,13 +6,13 @@
 
 ## Definition
 
-Firmware & Hardware Integrity Compromise refers to unauthorized or attacker-controlled modification of firmware across system components such as UEFI, BMC, NICs, GPUs, and storage controllers. Because this code runs before or below the OS, compromise can persist across OS reinstalls and disk wipes, evade many OS-level security tools, and survive tenant reassignment in shared bare-metal infrastructure.
+[Firmware](../GLOSSARY.md#firmware) & Hardware Integrity Compromise refers to unauthorized or attacker-controlled modification of firmware across system components such as UEFI, [BMC](../GLOSSARY.md#baseboard-management-controller-bmc), NICs, GPUs, and storage controllers. Because this code runs before or below the OS, compromise can persist across OS reinstalls and disk wipes, evade many OS-level security tools, and survive tenant reassignment in shared bare-metal infrastructure.
 
 ## Description
 
 Firmware and hardware integrity matters because these components sit beneath the operating system and outside the visibility of most normal security tools. A compromised firmware component can affect how a system boots, how devices behave, and what the OS itself is allowed to see.
 
-This makes trust difficult to establish after the fact. Providers need a way to prove that a platform booted into an expected, untampered state, and that critical components have not drifted from approved versions. Controls such as Secure Boot, Measured Boot, signed firmware enforcement, and cryptographic attestation help provide that assurance, but only when they are present, enabled, correctly configured, monitored, and independently verified.
+This makes trust difficult to establish after the fact. Providers need a way to prove that a platform booted into an expected, untampered state, and that critical components have not drifted from approved versions. Controls such as [Secure Boot](../GLOSSARY.md#secure-boot), [Measured Boot](../GLOSSARY.md#measured-boot), signed firmware enforcement, and cryptographic [attestation](../GLOSSARY.md#attestation) help provide that assurance, but only when they are present, enabled, correctly configured, monitored, and independently verified.
 
 The risk is especially important in AI infrastructure because these systems are valuable, shared, and often reassigned between tenants. In bare-metal environments, a malicious tenant with sufficient local access may attempt to abuse firmware update paths or device control interfaces before returning the node. If signed-firmware enforcement, attestation, and reassignment checks are absent, disabled, or unverified, the next tenant may inherit a compromised machine.
 
