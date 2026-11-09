@@ -62,11 +62,13 @@ AI storage platforms generally support encryption at rest, per-filesystem audit 
 
 2. **Enforce least privilege on your model storage and registries:** Apply granular access controls to repositories, object stores, file systems, backup locations, and registries, with separate permissions for reading, exporting, approving, deleting, and deploying artifacts.
 
-3. **Require approval and audit for high-impact actions:** Downloads, exports, permission changes, model promotions, backup restores, and cross-boundary transfers should generate tamper-resistant records and require approval where they could expose production or frontier models. Before promoting a finished model produced in your environment to serving, verify the model files required for serving against the approved model release's digest manifest signed by a trusted identity; block promotion if the signature is missing or verification fails, and ensure serving loads exactly the verified files. A valid signature shows the files are unchanged since signing, not that the model is safe.
+3. **Require approval and audit for high-impact actions:** Downloads, exports, permission changes, model promotions, backup restores, and cross-boundary transfers should generate tamper-resistant records and require approval where they could expose production or frontier models.
 
-4. **Monitor for unusual artifact movement:** Alert on bulk downloads, unexpected copies, transfers to new destinations, and large movements of model file types (.pt, .pth, .safetensors, .onnx, .h5), which traditional DLP may not classify as sensitive by default.
+4. **Sign and verify finished models before serving:** When a model trained in your environment is approved for release, sign a manifest of its file digests using an identity separate from the systems that store the model. Before promoting it to serving, verify the signature and every file against the manifest, and block promotion if the signature is missing or any file is missing, changed, or unlisted.
 
-5. **Ask how the provider protects the storage beneath your models:** When models run on third-party infrastructure, the storage layer isn't fully visible from inside your workload. Ask whether the provider requires client authentication, separates tenants at the storage layer, encrypts at rest, and audits storage access. Treat a provider that cannot answer as carrying residual risk.
+5. **Monitor for unusual artifact movement:** Alert on bulk downloads, unexpected copies, transfers to new destinations, and large movements of model file types (.pt, .pth, .safetensors, .onnx, .h5), which traditional DLP may not classify as sensitive by default.
+
+6. **Ask how the provider protects the storage beneath your models:** When models run on third-party infrastructure, the storage layer isn't fully visible from inside your workload. Ask whether the provider requires client authentication, separates tenants at the storage layer, encrypts at rest, and audits storage access. Treat a provider that cannot answer as carrying residual risk.
 
 ## Attack Scenarios
 
