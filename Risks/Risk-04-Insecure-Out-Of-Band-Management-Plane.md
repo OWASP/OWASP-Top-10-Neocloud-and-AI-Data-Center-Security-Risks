@@ -1,4 +1,4 @@
-# FORGE-04: Insecure Out-of-Band Management Plane
+# Risk 04: Insecure Out-of-Band Management Plane
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|

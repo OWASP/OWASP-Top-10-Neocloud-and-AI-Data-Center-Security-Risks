@@ -1,4 +1,4 @@
-# FORGE-08: Certification Gaps & Provider Transparency Failures
+# Risk 08: Certification Gaps & Provider Transparency Failures
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|

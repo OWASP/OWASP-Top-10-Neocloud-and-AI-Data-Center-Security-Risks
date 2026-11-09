@@ -1,4 +1,4 @@
-# FORGE-07: Insecure Data and Artifact Handling
+# Risk 07: Insecure Data and Artifact Handling
 
 | Risk Level | Likelihood | Impact | Detection Difficulty |
 |---|---|---|---|

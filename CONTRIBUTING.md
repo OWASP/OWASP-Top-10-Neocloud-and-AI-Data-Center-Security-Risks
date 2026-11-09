@@ -1,10 +1,10 @@
 # Contributing Guidelines
 
-Thank you for your interest in contributing to the **OWASP Top 10 Neocloud and AI Data Center Security Risks** (FORGE)! We are a community-driven, vendor-neutral project and welcome all contributors, regardless of their background or experience level.
+Thank you for your interest in contributing to the **OWASP Top 10 Neocloud and AI Data Center Security Risks**! We are a community-driven, vendor-neutral project and welcome all contributors, regardless of their background or experience level.
 
 ## Community-Driven Project
 
-FORGE is an open source effort that thrives on community collaboration. We welcome ideas, contributions, suggestions, and remarks from security professionals, researchers, cloud and HPC operators, data center engineers, and anyone passionate about AI infrastructure security. You do not need to be an expert — fixing a link, sharpening a mitigation, or adding a reference all help.
+This project is an open source effort that thrives on community collaboration. We welcome ideas, contributions, suggestions, and remarks from security professionals, researchers, cloud and HPC operators, data center engineers, and anyone passionate about AI infrastructure security. You do not need to be an expert — fixing a link, sharpening a mitigation, or adding a reference all help.
 
 ## How to Contribute
 
