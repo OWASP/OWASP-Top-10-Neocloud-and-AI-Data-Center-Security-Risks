@@ -6,11 +6,11 @@
 
 ## Definition
 
-This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, and DCIM for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload.
+This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, and DCIM for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload. Physical security itself is out of scope.
 
 ## Description
 
-AI data centers depend on facility infrastructure that is often invisible to security teams focused on servers, networks, and cloud control planes. BMS platforms control chilled water loops, CRAH and CRAC units, and cooling systems for high-density GPU racks. EPMS platforms monitor and sometimes control switchgear, UPS units, generators, and branch-circuit power distribution. DCIM platforms aggregate telemetry, track rack and asset location, and support capacity planning. Physical security systems govern entry to buildings, data halls, cages, rows, or maintenance areas.
+AI data centers depend on facility infrastructure that is often invisible to security teams focused on servers, networks, and cloud control planes. BMS platforms control chilled water loops, CRAH and CRAC units, and cooling systems for high-density GPU racks. EPMS platforms monitor and sometimes control switchgear, UPS units, generators, and branch-circuit power distribution. DCIM platforms aggregate telemetry, track rack and asset location, and support capacity planning. Networked physical access control systems, such as access management servers and door controllers, govern entry to buildings, data halls, cages, rows, or maintenance areas.
 
 These systems matter more for AI infrastructure than conventional compute because GPU clusters operate closer to thermal and power limits than traditional server fleets. Modern GPU racks can draw 50 to 130 kW or more, well above the 5 to 15 kW common in earlier generations. A facility-side disruption to cooling or power can stop a multi-day training run, corrupt checkpoints across many nodes, or force emergency shutdown of an entire hall.
 
@@ -47,6 +47,8 @@ BMS, EPMS, DCIM, and related facility platforms may be maintained by small vendo
 4. **Restrict and monitor DCIM access:** A DCIM platform is a detailed map of high-value assets and should be protected accordingly. Apply least-privilege roles, multi-factor authentication, and audit logging for all access. Limit which users, hosts, and integrations can read or export full inventory data.
 
 5. **Patch facility software and track lifecycle:** Maintain an inventory of BMS, EPMS, DCIM, and physical security software versions, including which products are still actively maintained by their vendors. Apply vendor patches on a defined schedule, and plan ahead for products that are abandoned or near end-of-life.
+
+6. **Segment and restrict access to physical access control systems:** Keep door controllers and access management servers on the segmented facility network, not reachable from tenant workloads, corporate IT, or the public internet, and disable web interfaces and services that are not needed. Apply least privilege and multi-factor authentication to the accounts that can enroll credentials or change door schedules, and review those accounts regularly.
 
 ### For customers evaluating a provider
 
