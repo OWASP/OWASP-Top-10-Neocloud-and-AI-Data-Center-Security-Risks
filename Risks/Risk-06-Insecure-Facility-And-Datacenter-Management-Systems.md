@@ -6,7 +6,7 @@
 
 ## Definition
 
-This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, DCIM for rack and asset tracking, and PACS for door controllers and access management servers. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload. This risk covers the software, networks, and controllers that manage cooling, power, and physical access. Physical security controls themselves, such as guards, mantraps, reader hardware and wiring, and decisions about who is authorized to enter, are out of scope.
+This category covers weaknesses in the software platforms that run the physical data center, including the systems that control cooling, power, and physical access. These include BMS for cooling and environmental controls, EPMS for electrical equipment, and DCIM for rack and asset tracking. Compromise of these systems can disrupt training and inference workloads, corrupt in-flight checkpoints, expose detailed maps of high-value assets, and bypass physical security without directly compromising a workload. Physical security itself is out of scope.
 
 ## Description
 
@@ -29,10 +29,6 @@ Controls integrators and equipment vendors are often given persistent remote acc
 ### Internet-exposed management interfaces
 
 Public research has identified tens of thousands of data center management interfaces, including DCIM platforms, cooling controllers, UPS units, and rack monitors, reachable directly from the internet. Exposure is especially dangerous when combined with default credentials, weak authentication, or missing VPN and jump-host controls.
-
-### Physical access control systems that can be bypassed through the network
-
-PACS sit at the boundary between the digital and physical worlds, so a software flaw can become a door that opens. Door controllers are networked embedded devices with web interfaces and firmware of their own, and they are often sold under many OEM brands. In 2022, eight CVEs (CVE-2022-31479 through CVE-2022-31486) were published for a widely OEM-integrated family of access control panels, including flaws reachable without authentication that CISA says could let an attacker gain device access, modify onboard relays, change configuration files, and cause denial of service.
 
 ### Facility software maintained by small teams or single vendors
 
@@ -83,5 +79,3 @@ A DCIM platform is reachable from the public internet because it was made access
 - **Target 2013 Data Breach Analysis.** Senate Commerce Committee staff report. Documents how an HVAC vendor's compromised remote access was used as the initial access vector into the Target retail network. https://www.commerce.senate.gov/services/files/24d3c229-4f2f-405d-b8db-a3a67f183883
 - **ICS-CERT Advisories on Building Management and Power Systems.** CISA. Ongoing vendor advisories covering vulnerabilities in BMS, EPMS, UPS, and DCIM products from manufacturers including Schneider Electric, Siemens, Tridium, and Vertiv. https://www.cisa.gov/news-events/cybersecurity-advisories
 - **openDCIM Project.** Open-source DCIM platform widely deployed in academic and commercial data centers. The project's lead maintainer announced retirement in 2025 with no successor identified at the time of writing. https://github.com/opendcim/openDCIM
-- **ICSA-22-153-01, Carrier LenelS2 HID Mercury Access Panels.** CISA. Advisory covering CVE-2022-31479 through CVE-2022-31486 in access control panels, including unauthenticated command injection, buffer overflow, and firmware upload flaws, with mitigations for network exposure. https://www.cisa.gov/news-events/ics-advisories/icsa-22-153-01
-- **A Door Isn't a Door When It's Ajar, Part 2.** Trellix Threat Labs. Technical write-up of how the access control panel vulnerabilities were found and chained to unauthenticated remote code execution as root. https://www.trellix.com/blogs/research/a-door-is-not-a-door-when-it-is-ajar-part-2/
